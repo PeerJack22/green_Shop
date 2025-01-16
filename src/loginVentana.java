@@ -16,6 +16,7 @@ public class loginVentana {
     private JLabel lbPassword;
     public JPanel loginPanel;
     private JPasswordField passwordField1;
+    private JLabel lbtitulo;
 
     public loginVentana() {
         buttonIngresar.addActionListener(new ActionListener() {
