@@ -48,7 +48,7 @@ public class loginVentana {
                     if (user != null) {
                         // Abrir la ventana de administrador
                         JFrame ventana = new JFrame("Admin Ventana");
-                        ventana.setContentPane(new adminVentana().adminPanel);
+                        ventana.setContentPane(new adminVentana(database).adminPanel);
                         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         ventana.setSize(1024, 768);
                         ventana.setPreferredSize(new Dimension(1024, 768));

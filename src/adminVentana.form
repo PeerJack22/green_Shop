@@ -36,7 +36,7 @@
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="94163" class="javax.swing.JLabel">
+      <component id="94163" class="javax.swing.JLabel" binding="lbNombre">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -45,7 +45,7 @@
           <text value="Nombre"/>
         </properties>
       </component>
-      <component id="e17f1" class="javax.swing.JLabel">
+      <component id="e17f1" class="javax.swing.JLabel" binding="lbDescripcion">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -54,7 +54,7 @@
           <text value="Descripción"/>
         </properties>
       </component>
-      <component id="6aae8" class="javax.swing.JLabel">
+      <component id="6aae8" class="javax.swing.JLabel" binding="lbPrecio">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -63,7 +63,7 @@
           <text value="Precio"/>
         </properties>
       </component>
-      <component id="f8b42" class="javax.swing.JLabel">
+      <component id="f8b42" class="javax.swing.JLabel" binding="lbStock">
         <constraints>
           <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -72,7 +72,7 @@
           <text value="Stock"/>
         </properties>
       </component>
-      <component id="57a11" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="57a11" class="javax.swing.JTextField" binding="textNombre">
         <constraints>
           <grid row="4" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -82,7 +82,7 @@
           <font size="20"/>
         </properties>
       </component>
-      <component id="d94e8" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+      <component id="d94e8" class="javax.swing.JTextField" binding="textDes">
         <constraints>
           <grid row="5" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -92,7 +92,7 @@
           <font size="20"/>
         </properties>
       </component>
-      <component id="62d6d" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+      <component id="62d6d" class="javax.swing.JTextField" binding="textPrecio">
         <constraints>
           <grid row="6" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -102,7 +102,7 @@
           <font size="20"/>
         </properties>
       </component>
-      <component id="4e451" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+      <component id="4e451" class="javax.swing.JTextField" binding="textStock">
         <constraints>
           <grid row="7" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -131,7 +131,7 @@
           <text value="Utilizar ID del producto"/>
         </properties>
       </component>
-      <component id="27bde" class="javax.swing.JLabel">
+      <component id="27bde" class="javax.swing.JLabel" binding="lbID">
         <constraints>
           <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -176,7 +176,7 @@
           <text value="Consultar producto"/>
         </properties>
       </component>
-      <component id="60457" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+      <component id="60457" class="javax.swing.JTextField" binding="textID">
         <constraints>
           <grid row="10" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
