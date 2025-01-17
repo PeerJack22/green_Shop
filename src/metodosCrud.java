@@ -12,10 +12,10 @@ public class metodosCrud {
     }
 
     //Crear un nuevo producto
-    public void crearProducto(String name, String description, double price, int stock) {
-        Document nuevoProducto = new Document("name", name)
-                .append("description", description) //Se agrega en la coleccion
-                .append("price", price)
+    public void crearProducto(String nombre, String descripcion, double precio, int stock) {
+        Document nuevoProducto = new Document("nombre", nombre)
+                .append("descripcion", descripcion) //Se agrega en la coleccion
+                .append("precio", precio)
                 .append("stock", stock);
         collection.insertOne(nuevoProducto);
         System.out.println("Producto creado con éxito."); //mensaje de confirmación
@@ -35,11 +35,11 @@ public class metodosCrud {
     }
 
     // Actualizar producti por id
-    public void actualizarProducto(String id, String name, String description, double price, int stock) {
+    public void actualizarProducto(String id, String nombre, String descripcion, double precio, int stock) {
         Document filtro = new Document("_id", new ObjectId(id));
-        Document actualizacion = new Document("$set", new Document("name", name)
-                .append("description", description)
-                .append("price", price)
+        Document actualizacion = new Document("$set", new Document("nombre", nombre)
+                .append("descripcion", descripcion)
+                .append("precio", precio)
                 .append("stock", stock));
         collection.updateOne(filtro, actualizacion);
         System.out.println("Producto actualizado con éxito.");
