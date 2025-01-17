@@ -50,8 +50,8 @@ public class loginVentana {
                         JFrame ventana = new JFrame("Admin Ventana");
                         ventana.setContentPane(new adminVentana().adminPanel);
                         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        ventana.setSize(600, 480);
-                        ventana.setPreferredSize(new Dimension(600, 480));
+                        ventana.setSize(1024, 768);
+                        ventana.setPreferredSize(new Dimension(1024, 768));
                         ventana.pack();
                         ventana.setVisible(true);
                     } else {
