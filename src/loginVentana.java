@@ -46,16 +46,33 @@ public class loginVentana {
                     System.out.println("Conexión exitosa a la base de datos.");
 
                     if (user != null) {
-                        // Abrir la ventana de administrador
-                        JFrame ventana = new JFrame("Admin Ventana");
-                        ventana.setContentPane(new adminVentana().adminPanel);
-                        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        ventana.setSize(1280,720);
-                        ventana.setPreferredSize(new Dimension(1280,720));
-                        ventana.pack();
-                        ventana.setVisible(true);
+                        //Ver el rol del usuario
+                        String rol = user.getString("rol");
+
+
+                        if ("admin".equalsIgnoreCase(rol)) {
+                            // Abrir la ventana de administrador
+                            JFrame ventanaAdmin = new JFrame("Admin Ventana");
+                            ventanaAdmin.setContentPane(new adminVentana().adminPanel);
+                            ventanaAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            ventanaAdmin.setSize(1280, 720);
+                            ventanaAdmin.setPreferredSize(new Dimension(1280, 720));
+                            ventanaAdmin.pack();
+                            ventanaAdmin.setVisible(true);
+                        } else if ("cliente".equalsIgnoreCase(rol)) {
+                            //Abrir ventana cliente
+                            JFrame ventanaCliente = new JFrame("Cliente Ventana");
+                            ventanaCliente.setContentPane(new clienteVentana().clientePanel);
+                            ventanaCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            ventanaCliente.setSize(1280, 720);
+                            ventanaCliente.setPreferredSize(new Dimension(1280, 720));
+                            ventanaCliente.pack();
+                            ventanaCliente.setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Su rol no se reconoció o no lo tiene. Contacte al administrador.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Acceso denegado. Usuario o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Acceso denegado el usuario o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
