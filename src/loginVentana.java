@@ -49,7 +49,6 @@ public class loginVentana {
                         //Ver el rol del usuario
                         String rol = user.getString("rol");
 
-
                         if ("admin".equalsIgnoreCase(rol)) {
                             // Abrir la ventana de administrador
                             JFrame ventanaAdmin = new JFrame("Admin Ventana");
@@ -69,6 +68,7 @@ public class loginVentana {
                             ventanaCliente.pack();
                             ventanaCliente.setVisible(true);
                         } else {
+                            //Si no hay un rol
                             JOptionPane.showMessageDialog(null, "Su rol no se reconoció o no lo tiene. Contacte al administrador.", "Error", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
