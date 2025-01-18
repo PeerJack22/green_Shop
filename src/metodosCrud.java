@@ -1,6 +1,9 @@
 import com.mongodb.client.*;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class metodosCrud {
 
@@ -28,16 +31,13 @@ public class metodosCrud {
     }
 
     //Ver todos los productos
-    public void leerProductos() {
+    public List<Document> leerProductos() {
+        List<Document> listaProductos = new ArrayList<>();
         FindIterable<Document> productos = collection.find();
         for (Document producto : productos) {
-            System.out.println(producto.toJson());
+            listaProductos.add(producto);
         }
-    }
-
-    //Ver producto por id
-    public Document leerProductoPorId(String id) {
-        return collection.find(new Document("_id", new ObjectId(id))).first();
+        return listaProductos;
     }
 
     // Actualizar producti por id
