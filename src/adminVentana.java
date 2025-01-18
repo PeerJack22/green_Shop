@@ -1,8 +1,10 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class adminVentana extends loginVentana{
 
-    private metodosCrud mc;
+    public metodosCrud mc;
 
     public JPanel adminPanel;
     private JTextField textNombre;
@@ -23,5 +25,42 @@ public class adminVentana extends loginVentana{
 
 
 
+
+    public adminVentana() {
+        mc = new metodosCrud();
+
+        agregarProductoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nombre = textNombre.getText();
+                String des = textDes.getText();
+                double precio = Double.parseDouble(textPrecio.getText());
+                int stock = Integer.parseInt(textStock.getText());
+
+                mc.crearProducto(nombre, des, precio, stock);
+            }
+        });
+        actualizarProductoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String id = textID.getText();
+                String nombre = textNombre.getText();
+                String des = textDes.getText();
+                double precio = Double.parseDouble(textPrecio.getText());
+                int stock = Integer.parseInt(textStock.getText());
+
+                mc.actualizarProducto(id, nombre, des, precio, stock);
+            }
+        });
+        eliminarProductoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String id = textID.getText();
+                mc.eliminarProducto(id);
+            }
+        });
+    }
 }
 

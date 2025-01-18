@@ -4,6 +4,12 @@ import org.bson.types.ObjectId;
 
 public class metodosCrud {
 
+    public metodosCrud() {
+        MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+        MongoDatabase database = mongoClient.getDatabase("greenShop");
+        this.collection = database.getCollection("productos");
+    }
+
     private final MongoCollection<Document> collection;
 
     //Conexion con la colección de productos
