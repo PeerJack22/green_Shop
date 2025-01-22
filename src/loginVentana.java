@@ -60,8 +60,9 @@ public class loginVentana {
                             ventanaAdmin.setVisible(true);
                         } else if ("cliente".equalsIgnoreCase(rol)) {
                             //Abrir ventana cliente
+                            String clienteId = "c001";
                             JFrame ventanaCliente = new JFrame("Cliente Ventana");
-                            ventanaCliente.setContentPane(new clienteVentana().clientePanel);
+                            ventanaCliente.setContentPane(new clienteVentana(clienteId).clientePanel);
                             ventanaCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             ventanaCliente.setSize(1280, 720);
                             ventanaCliente.setPreferredSize(new Dimension(1280, 720));
