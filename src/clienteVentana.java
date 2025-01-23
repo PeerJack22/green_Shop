@@ -147,11 +147,25 @@ public class clienteVentana extends loginVentana{
 
         try (MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"))) {
             MongoDatabase database = mongoClient.getDatabase("greenShop");
-            MongoCollection<Document> collection = database.getCollection("transacciones");
+            MongoCollection<Document> transaccionesCollection = database.getCollection("transacciones");
+            MongoCollection<Document> productosCollection = database.getCollection("productos");
 
-            collection.insertOne(transaccion);
+            // Guardar la transacción en la colección "transacciones"
+            transaccionesCollection.insertOne(transaccion);
 
-            JOptionPane.showMessageDialog(null, "Compra finalizada con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            // Actualizar el stock en la colección "productos"
+            for (Document producto : carrito) {
+                String productoId = producto.getString("producto_id");
+                int cantidadComprada = producto.getInteger("cantidad");
+
+                // Actualizar el stock del producto
+                productosCollection.updateOne(
+                        new Document("nombre", productoId), // Buscar por nombre (puedes cambiarlo por "producto_id" si tienes ese campo)
+                        new Document("$inc", new Document("stock", -cantidadComprada)) // Reducir el stock
+                );
+            }
+
+            JOptionPane.showMessageDialog(null, "Compra finalizada con éxito. El stock ha sido actualizado.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             limpiarCarrito();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al finalizar la compra: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
