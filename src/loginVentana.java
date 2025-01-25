@@ -54,8 +54,8 @@ public class loginVentana {
                             JFrame ventanaAdmin = new JFrame("Admin Ventana");
                             ventanaAdmin.setContentPane(new adminVentana().adminPanel);
                             ventanaAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                            ventanaAdmin.setSize(1280, 800);
-                            ventanaAdmin.setPreferredSize(new Dimension(1280, 800));
+                            ventanaAdmin.setSize(1360,768);
+                            ventanaAdmin.setPreferredSize(new Dimension(1360,768));
                             ventanaAdmin.pack();
                             ventanaAdmin.setVisible(true);
                         } else if ("cliente".equalsIgnoreCase(rol)) {
@@ -64,8 +64,8 @@ public class loginVentana {
                             JFrame ventanaCliente = new JFrame("Cliente Ventana");
                             ventanaCliente.setContentPane(new clienteVentana(clienteId).clientePanel);
                             ventanaCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                            ventanaCliente.setSize(1280, 800);
-                            ventanaCliente.setPreferredSize(new Dimension(1280, 800));
+                            ventanaCliente.setSize(1360,768);
+                            ventanaCliente.setPreferredSize(new Dimension(1360,768));
                             ventanaCliente.pack();
                             ventanaCliente.setVisible(true);
                         } else {

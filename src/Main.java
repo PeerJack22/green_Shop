@@ -6,8 +6,8 @@ public class Main {
         JFrame frame = new JFrame("Login");
         frame.setContentPane(new loginVentana().loginPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1280,800);
-        frame.setPreferredSize(new Dimension(1280,800));
+        frame.setSize(1360,768);
+        frame.setPreferredSize(new Dimension(1360,768));
         frame.pack();
         frame.setVisible(true);
 

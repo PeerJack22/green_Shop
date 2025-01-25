@@ -257,6 +257,7 @@
         <properties>
           <background color="-9472430"/>
           <font name="Verdana" size="16"/>
+          <foreground color="-1"/>
           <text value="Generar informe"/>
         </properties>
       </component>

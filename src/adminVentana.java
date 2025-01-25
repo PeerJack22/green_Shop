@@ -168,7 +168,7 @@ public class adminVentana extends loginVentana {
         // Leer lols productos de la database
         List<Document> productos = mc.leerProductos();
 
-        // Agregar cada producto en la tabla como fila
+        // Agregar cada producto
         for (Document producto : productos) {
             model.addRow(new Object[]{
                     producto.getObjectId("_id").toString(),
