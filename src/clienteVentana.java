@@ -160,7 +160,7 @@ public class clienteVentana extends loginVentana{
 
                 // Actualizar el stock del producto
                 productosCollection.updateOne(
-                        new Document("nombre", productoId), // Buscar por nombre (puedes cambiarlo por "producto_id" si tienes ese campo)
+                        new Document("nombre", productoId), // Buscar por nombre
                         new Document("$inc", new Document("stock", -cantidadComprada)) // Reducir el stock
                 );
             }
