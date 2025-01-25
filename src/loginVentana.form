@@ -125,9 +125,9 @@
         </constraints>
         <properties>
           <background color="-9472430"/>
-          <font name="Verdana" size="40" style="1"/>
+          <font name="Verdana" size="42" style="1"/>
           <foreground color="-11908537"/>
-          <text value="Green Shop"/>
+          <text value="Green Root"/>
         </properties>
       </component>
       <vspacer id="71646">

@@ -31,25 +31,27 @@ public class loginVentana {
                 }
 
                 try (MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"))) {
-                    // Obtener la base de datos
-                    MongoDatabase database = mongoClient.getDatabase("greenShop");
 
-                    // Obtener la colección
+                    // Base de datos
+                    MongoDatabase database = mongoClient.getDatabase("greenShop");
+                    // Coleccion
                     MongoCollection<Document> collection = database.getCollection("usuarios");
 
-                    // Crear la consulta
+                    // Crear la consulta para compararla con lo de la database
                     Document query = new Document("username", usuarioLogin).append("password", passwordLogin);
-
                     // Buscar el usuario
                     Document user = collection.find(query).first();
 
+                    // Mensaje de confirmaciòn en consola
                     System.out.println("Conexión exitosa a la base de datos.");
 
                     if (user != null) {
-                        //Ver el rol del usuario
+
+                        //Consultar rol del usuario
                         String rol = user.getString("rol");
 
                         if ("admin".equalsIgnoreCase(rol)) {
+
                             // Abrir la ventana de administrador
                             JFrame ventanaAdmin = new JFrame("Admin Ventana");
                             ventanaAdmin.setContentPane(new adminVentana().adminPanel);
@@ -58,7 +60,9 @@ public class loginVentana {
                             ventanaAdmin.setPreferredSize(new Dimension(1360,768));
                             ventanaAdmin.pack();
                             ventanaAdmin.setVisible(true);
+
                         } else if ("cliente".equalsIgnoreCase(rol)) {
+
                             //Abrir ventana cliente
                             String clienteId = "c001";
                             JFrame ventanaCliente = new JFrame("Cliente Ventana");
@@ -68,6 +72,7 @@ public class loginVentana {
                             ventanaCliente.setPreferredSize(new Dimension(1360,768));
                             ventanaCliente.pack();
                             ventanaCliente.setVisible(true);
+
                         } else {
                             //Si no hay un rol
                             JOptionPane.showMessageDialog(null, "Su rol no se reconoció o no lo tiene. Contacte al administrador.", "Error", JOptionPane.ERROR_MESSAGE);
