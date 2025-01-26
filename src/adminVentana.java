@@ -116,7 +116,7 @@ public class adminVentana extends loginVentana {
                     document.open();
 
                     // Encabezado para el informe
-                    Paragraph parrafo1 = new Paragraph("Informe de productos en la GreenShop:\n\n");
+                    Paragraph parrafo1 = new Paragraph("Informe de productos en la GreenShop\n\n");
                     parrafo1.setAlignment(com.lowagie.text.Element.ALIGN_CENTER); // Para centrar el texto
                     document.add(parrafo1); // se agrega al PDF
 
@@ -126,7 +126,7 @@ public class adminVentana extends loginVentana {
 
                     // Agregar fecha al informe
                     Paragraph fechaParrafo = new Paragraph("Fecha y hora: " + fechaHora + "\n\n");
-                    fechaParrafo.setAlignment(com.lowagie.text.Element.ALIGN_RIGHT); // Para poner la fecha en la derecha
+                    fechaParrafo.setAlignment(com.lowagie.text.Element.ALIGN_LEFT); // Para poner la fecha en la izquierda
                     document.add(fechaParrafo);
 
                     // Crear la tabla

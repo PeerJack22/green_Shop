@@ -10,6 +10,10 @@ import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 
 public class clienteVentana extends loginVentana{
     public JPanel clientePanel;
@@ -24,6 +28,7 @@ public class clienteVentana extends loginVentana{
     private JTable table2;
     private JButton agregarAlCarritoButton;
     private JButton finalizarCompraButton;
+    private JButton generarFacturaButton;
 
 
     private DefaultTableModel productosTabla;
@@ -47,8 +52,6 @@ public class clienteVentana extends loginVentana{
 
         cargarProductos();
 
-
-
         limpiarCamposButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -66,6 +69,57 @@ public class clienteVentana extends loginVentana{
             @Override
             public void actionPerformed(ActionEvent e) {
                 finalizarCompra();
+            }
+        });
+        generarFacturaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // Crear un documento PDF
+                    com.lowagie.text.Document document = new com.lowagie.text.Document();
+                    PdfWriter.getInstance(document, new FileOutputStream("factura.pdf"));
+
+                    document.open();
+
+                    // Agregar título
+                    document.add(new Paragraph("Factura de Compra"));
+                    document.add(new Paragraph("Green Root"));
+                    document.add(new Paragraph("Fecha y hora: " + LocalDateTime.now().toString()));
+                    document.add(new Paragraph("Cliente ID: " + clienteId));
+                    document.add(new Paragraph("\n")); // Espacio
+
+                    // Crear tabla para los datos del carrito
+                    PdfPTable table = new PdfPTable(4); // Número de columnas
+                    table.addCell("Producto");
+                    table.addCell("Cantidad");
+                    table.addCell("Precio Unitario");
+                    table.addCell("Subtotal");
+
+                    // Agregar las filas del carrito
+                    for (int i = 0; i < carritoTablaModel.getRowCount(); i++) {
+                        table.addCell(carritoTablaModel.getValueAt(i, 0).toString()); // Producto
+                        table.addCell(carritoTablaModel.getValueAt(i, 1).toString()); // Cantidad
+                        table.addCell(carritoTablaModel.getValueAt(i, 2).toString()); // Precio Unitario
+                        table.addCell(carritoTablaModel.getValueAt(i, 3).toString()); // Subtotal
+                    }
+
+                    // Calcular el total
+                    double total = carrito.stream().mapToDouble(producto -> producto.getDouble("subtotal")).sum();
+
+                    // Agregar la tabla al documento
+                    document.add(table);
+                    document.add(new Paragraph("\n")); // Espacio
+
+                    // Agregar el total
+                    document.add(new Paragraph("Total: $" + total));
+
+                    // Cerrar el documento
+                    document.close();
+
+                    JOptionPane.showMessageDialog(null, "Factura generada con éxito: factura.pdf", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Error al generar la factura: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }

@@ -7,6 +7,7 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import java.util.Random;
 
 public class loginVentana {
     private JTextField textLogin;
@@ -26,7 +27,7 @@ public class loginVentana {
                 String passwordLogin = new String(passwordField1.getPassword());
 
                 if (usuarioLogin.isEmpty() || passwordLogin.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Por favor, completa todos los campos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Completa todos los campos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
@@ -64,7 +65,7 @@ public class loginVentana {
                         } else if ("cliente".equalsIgnoreCase(rol)) {
 
                             //Abrir ventana cliente
-                            String clienteId = "c001";
+                            String clienteId = generarClienteId();
                             JFrame ventanaCliente = new JFrame("Cliente Ventana");
                             ventanaCliente.setContentPane(new clienteVentana(clienteId).clientePanel);
                             ventanaCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,5 +86,11 @@ public class loginVentana {
                 }
             }
         });
+    }
+
+    private String generarClienteId() {
+        Random random = new Random();
+        int numeroAleatorio = 1000 + random.nextInt(9000); // Para un número entre 1000 y 9000
+        return "cl" + numeroAleatorio;
     }
 }
