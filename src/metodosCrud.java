@@ -1,6 +1,8 @@
 import com.mongodb.client.*;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class metodosCrud {
                 .append("precio", precio)
                 .append("stock", stock);
         collection.insertOne(nuevoProducto);
-        System.out.println("Producto creado con éxito."); //mensaje de confirmación
+        JOptionPane.showMessageDialog(null, "Producto agregado correctamente");
     }
 
     //Ver todos los productos
@@ -48,14 +50,14 @@ public class metodosCrud {
                 .append("precio", precio)
                 .append("stock", stock));
         collection.updateOne(filtro, actualizacion);
-        System.out.println("Producto actualizado con éxito.");
+        JOptionPane.showMessageDialog(null, "Producto actualizado correctamente");
     }
 
     // Eliminar producto por id
     public void eliminarProducto(String id) {
         Document filtro = new Document("_id", new ObjectId(id));
         collection.deleteOne(filtro);
-        System.out.println("Producto eliminado con éxito.");
+        JOptionPane.showMessageDialog(null, "Producto eliminado correctamente");
     }
 
 }

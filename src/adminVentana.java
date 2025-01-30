@@ -46,6 +46,20 @@ public class adminVentana extends loginVentana {
                 new String[]{"ID", "Nombre", "Descripción", "Precio", "Stock"}
         ));
 
+        table1.getSelectionModel().addListSelectionListener(event -> {
+            if (!event.getValueIsAdjusting() && table1.getSelectedRow() != -1) {
+                //Obtener datos de la fila seleccionada
+                int selectedRow = table1.getSelectedRow();
+
+                //Poner los valores en los en los textfields
+                textID.setText(table1.getValueAt(selectedRow, 0).toString());
+                textNombre.setText(table1.getValueAt(selectedRow, 1).toString());
+                textDes.setText(table1.getValueAt(selectedRow, 2).toString());
+                textPrecio.setText(table1.getValueAt(selectedRow, 3).toString());
+                textStock.setText(table1.getValueAt(selectedRow, 4).toString());
+            }
+        });
+
         agregarProductoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -94,7 +108,7 @@ public class adminVentana extends loginVentana {
         limpiarCamposButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Campos limpios para agregar otro producto
+                // Limpiar para agregar otro producto
                 textID.setText("");
                 textNombre.setText("");
                 textDes.setText("");
@@ -106,54 +120,70 @@ public class adminVentana extends loginVentana {
         generarInformeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Se crea el documento PDF
-                com.lowagie.text.Document document = new com.lowagie.text.Document();
-                try {
-                    // Se crea un escritor para el PDF
-                    PdfWriter.getInstance(document, new FileOutputStream("informe.pdf"));
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle("Guardar informe como...");
 
-                    // Abrir el documento
-                    document.open();
+                // Filtro para archivos pdf
+                fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos PDF (*.pdf)", "pdf"));
 
-                    // Encabezado para el informe
-                    Paragraph parrafo1 = new Paragraph("Informe de productos en la GreenShop\n\n");
-                    parrafo1.setAlignment(com.lowagie.text.Element.ALIGN_CENTER); // Para centrar el texto
-                    document.add(parrafo1); // se agrega al PDF
+                // Ventana para el guardado
+                int userSelection = fileChooser.showSaveDialog(null);
 
-                    // Obtener la fecha y hora actual
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                    String fechaHora = dateFormat.format(new Date());
+                // Verificscion de seleccion de ubicacion
+                if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    String filePath = fileChooser.getSelectedFile().getAbsolutePath();
 
-                    // Agregar fecha al informe
-                    Paragraph fechaParrafo = new Paragraph("Fecha y hora: " + fechaHora + "\n\n");
-                    fechaParrafo.setAlignment(com.lowagie.text.Element.ALIGN_LEFT); // Para poner la fecha en la izquierda
-                    document.add(fechaParrafo);
-
-                    // Crear la tabla
-                    PdfPTable pdfTable = new PdfPTable(table1.getColumnCount()); // Obtenemos el nùmero de columnas
-
-                    // Se añade los encabezados de la tabla
-                    for (int i = 0; i < table1.getColumnCount(); i++) {
-                        pdfTable.addCell(table1.getColumnName(i)); //Se ponen los nombres de cada columna en la tabla
+                    // Asegurarnos que el archivo sea pdf
+                    if (!filePath.toLowerCase().endsWith(".pdf")) {
+                        filePath += ".pdf";
                     }
 
-                    // Añadir las filas de la tabla al documento
-                    DefaultTableModel model = (DefaultTableModel) table1.getModel();
-                    for (int i = 0; i < model.getRowCount(); i++) {
-                        for (int j = 0; j < model.getColumnCount(); j++) {
-                            pdfTable.addCell(model.getValueAt(i, j).toString());
+                    // Crear el documento
+                    com.lowagie.text.Document document = new com.lowagie.text.Document();
+                    try {
+                        // Crear un escritor
+                        PdfWriter.getInstance(document, new FileOutputStream(filePath));
+
+                        // Abrir el documento
+                        document.open();
+
+                        // Pomer el encabezado
+                        Paragraph parrafo1 = new Paragraph("Informe de productos en la GreenShop\n\n");
+                        parrafo1.setAlignment(com.lowagie.text.Element.ALIGN_CENTER);
+                        document.add(parrafo1);
+
+                        // Fecha y hora
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                        String fechaHora = dateFormat.format(new Date());
+                        Paragraph fechaParrafo = new Paragraph("Fecha y hora: " + fechaHora + "\n\n");
+                        fechaParrafo.setAlignment(com.lowagie.text.Element.ALIGN_LEFT);
+                        document.add(fechaParrafo);
+
+                        // Creacion de la tabla
+                        PdfPTable pdfTable = new PdfPTable(table1.getColumnCount());
+
+                        // Se añade los encabezados para la tabla
+                        for (int i = 0; i < table1.getColumnCount(); i++) {
+                            pdfTable.addCell(table1.getColumnName(i));
                         }
+
+                        // Se añade las filas para la tabla
+                        DefaultTableModel model = (DefaultTableModel) table1.getModel();
+                        for (int i = 0; i < model.getRowCount(); i++) {
+                            for (int j = 0; j < model.getColumnCount(); j++) {
+                                pdfTable.addCell(model.getValueAt(i, j).toString());
+                            }
+                        }
+
+                        // Agregamos la tabla para el documento
+                        document.add(pdfTable);
+                        document.close();
+
+                        // Mensaje de confirmación
+                        JOptionPane.showMessageDialog(null, "Informe guardado correctamente en:\n" + filePath, "Mensaje de confirmación", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Error al generar el informe: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     }
-
-                    // Agregar la tabla al documento
-                    document.add(pdfTable);
-
-                    document.close();
-
-                    // Mensaje de confirmacion
-                    JOptionPane.showMessageDialog(null, "Informe generado correctamente :)", "Mensaje de confirmación", JOptionPane.INFORMATION_MESSAGE);
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Error al generar el informe: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
