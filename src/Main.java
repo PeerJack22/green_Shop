@@ -1,14 +1,16 @@
 import javax.swing.*;
-import java.awt.*;
+
 
 public class Main {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Login");
-        frame.setContentPane(new loginVentana().loginPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1360,768);
-        frame.setPreferredSize(new Dimension(1360,768));
-        frame.pack();
-        frame.setVisible(true);
+        // Ejecutar en el Event Dispatch Thread (EDT)
+        SwingUtilities.invokeLater(() -> {
+            JFrame ventanaLogin = new JFrame("Login");
+            ventanaLogin.setContentPane(new loginVentana().loginPanel);
+            ventanaLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            ventanaLogin.setSize(1360, 768);
+            ventanaLogin.setLocationRelativeTo(null);
+            ventanaLogin.setVisible(true);
+        });
     }
 }

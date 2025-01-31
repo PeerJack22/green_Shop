@@ -29,6 +29,7 @@ public class clienteVentana extends loginVentana{
     private JButton agregarAlCarritoButton;
     private JButton finalizarCompraButton;
     private JButton generarFacturaButton;
+    private JButton regresarButton;
 
 
     private DefaultTableModel productosTabla;
@@ -100,7 +101,7 @@ public class clienteVentana extends loginVentana{
                         document.add(new Paragraph("Green Root"));
                         document.add(new Paragraph("Fecha y hora: " + LocalDateTime.now().toString()));
                         document.add(new Paragraph("Cliente ID: " + clienteId));
-                        document.add(new Paragraph("\n")); // Espacio
+                        document.add(new Paragraph("\n"));
 
 
                         PdfPTable table = new PdfPTable(4); // Número de columnas
@@ -122,7 +123,7 @@ public class clienteVentana extends loginVentana{
 
                         // Agregar la tabla al documento
                         document.add(table);
-                        document.add(new Paragraph("\n")); // Espacio
+                        document.add(new Paragraph("\n"));
 
                         // Agregar el total
                         document.add(new Paragraph("Total: $" + total));
@@ -136,6 +137,18 @@ public class clienteVentana extends loginVentana{
             }
         });
 
+        regresarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame ventanaLogin = new JFrame("Login");
+                ventanaLogin.setContentPane(new loginVentana().loginPanel);
+                ventanaLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                ventanaLogin.setSize(1360, 768);
+                ventanaLogin.setLocationRelativeTo(null); // Centrar la ventana
+                ventanaLogin.setVisible(true);
+                ((JFrame) SwingUtilities.getWindowAncestor(clientePanel)).dispose();
+            }
+        });
     }
 
 

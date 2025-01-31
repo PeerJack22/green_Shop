@@ -32,6 +32,7 @@ public class adminVentana extends loginVentana {
     private JTable table1;
     private JButton limpiarCamposButton;
     private JButton generarInformeButton;
+    private JButton regresarButton;
 
 
     public adminVentana() {
@@ -188,6 +189,20 @@ public class adminVentana extends loginVentana {
             }
         });
 
+        regresarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame ventanaLogin = new JFrame("Login");
+                ventanaLogin.setContentPane(new loginVentana().loginPanel);
+                ventanaLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                ventanaLogin.setSize(1360, 768);
+                ventanaLogin.setLocationRelativeTo(null);
+                ventanaLogin.setVisible(true);
+
+                ((JFrame) SwingUtilities.getWindowAncestor(adminPanel)).dispose();
+
+            }
+        });
     }
 
     private void cargarProductosEnTabla() {

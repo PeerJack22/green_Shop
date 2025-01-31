@@ -61,6 +61,8 @@ public class loginVentana {
                             ventanaAdmin.setPreferredSize(new Dimension(1360,768));
                             ventanaAdmin.pack();
                             ventanaAdmin.setVisible(true);
+                            // Cerrar la ventana de login
+                            ((JFrame) SwingUtilities.getWindowAncestor(loginPanel)).dispose();
 
                         } else if ("cliente".equalsIgnoreCase(rol)) {
 
@@ -73,6 +75,8 @@ public class loginVentana {
                             ventanaCliente.setPreferredSize(new Dimension(1360,768));
                             ventanaCliente.pack();
                             ventanaCliente.setVisible(true);
+                            // Cerrar la ventana de login
+                            ((JFrame) SwingUtilities.getWindowAncestor(loginPanel)).dispose();
 
                         } else {
                             //Si no hay un rol
