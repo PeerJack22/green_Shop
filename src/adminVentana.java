@@ -13,7 +13,7 @@ import java.util.Date;
 
 public class adminVentana extends loginVentana {
 
-    public metodosCrud mc;  // Utilizar los metodos crud
+    public metodosCrud mc;
     public JPanel adminPanel;
     private JTextField textNombre;
     private JTextField textDes;
@@ -49,7 +49,7 @@ public class adminVentana extends loginVentana {
 
         table1.getSelectionModel().addListSelectionListener(event -> {
             if (!event.getValueIsAdjusting() && table1.getSelectedRow() != -1) {
-                //Obtener datos de la fila seleccionada
+                //Tener los dstos de la fila seleccionada
                 int selectedRow = table1.getSelectedRow();
 
                 //Poner los valores en los en los textfields
@@ -149,7 +149,7 @@ public class adminVentana extends loginVentana {
                         document.open();
 
                         // Pomer el encabezado
-                        Paragraph parrafo1 = new Paragraph("Informe de productos en la GreenShop\n\n");
+                        Paragraph parrafo1 = new Paragraph("Informe de productos  Green Root\n\n");
                         parrafo1.setAlignment(com.lowagie.text.Element.ALIGN_CENTER);
                         document.add(parrafo1);
 
