@@ -65,6 +65,9 @@
 
   ![image](https://github.com/user-attachments/assets/fc95976b-584a-4c3e-b055-2bf3c941c679)
 
+  ### Video para guía de usuario
+
+  https://youtu.be/lOYVne6mX9c 
 
 
 
