@@ -3,7 +3,6 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        // Ejecutar en el Event Dispatch Thread (EDT)
         SwingUtilities.invokeLater(() -> {
             JFrame ventanaLogin = new JFrame("Login");
             ventanaLogin.setContentPane(new loginVentana().loginPanel);
