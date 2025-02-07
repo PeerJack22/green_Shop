@@ -69,6 +69,16 @@
 
   https://youtu.be/lOYVne6mX9c 
 
+  ## Pruebas
+  
+  ![image](https://github.com/user-attachments/assets/4ab2ba0f-ba7d-4063-a12f-dc4dc313dee2)
+
+  Resultados de pruebas:
+
+  ![image](https://github.com/user-attachments/assets/761331fa-b58d-4696-bab5-b799b09ef450)
+
+
+
 
 
 
